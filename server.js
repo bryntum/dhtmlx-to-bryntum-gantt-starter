@@ -1,7 +1,13 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const path = require("path");
-require("dotenv").config();
+import express from 'express';
+import bodyParser from 'body-parser';
+import path from 'path';
+import dateFormat from 'date-format-lite';
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
+export function uuid() {}
+
+dotenv.config();
+global.__dirname = path.resolve();
 
 const port = process.env.PORT || 1338;
 const app = express();
@@ -13,10 +19,6 @@ app.listen(port, () => {
   console.log("Server is running on port " + port + "...");
 });
 
-require("date-format-lite");
-
-// get the client
-const mysql = require("mysql2/promise");
 
 async function serverConfig() {
   const db = mysql.createPool({
