@@ -19,15 +19,14 @@ app.listen(port, () => {
   console.log("Server is running on port " + port + "...");
 });
 
+const db = mysql.createPool({
+  host: process.env.HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
+});
 
 async function serverConfig() {
-  const db = mysql.createPool({
-    host: process.env.HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
-  });
-
   app.get("/data", async (req, res) => {
     try {
       const results = await Promise.all([
