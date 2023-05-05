@@ -1,15 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-import dateFormat from 'date-format-lite';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
-export function uuid() {}
 
 dotenv.config();
 global.__dirname = path.resolve();
 
-const port = process.env.PORT || 1338;
+const port = process.env.PORT || 1337;
 const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
