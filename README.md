@@ -17,7 +17,7 @@ Now create a `.env` file in the root folder and add the following lines for conn
 
 ```
 HOST=localhost
-PORT=1338
+PORT=1337
 MYSQL_USER=root
 PASSWORD=password
 DATABASE=dhtmlx
