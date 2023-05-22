@@ -17,7 +17,7 @@ Now create a `.env` file in the root folder and add the following lines for conn
 
 ```
 HOST=localhost
-PORT=1338
+PORT=1337
 MYSQL_USER=root
 PASSWORD=password
 DATABASE=dhtmlx
@@ -53,48 +53,57 @@ USE dhtmlx;
 Let’s create the two tables that we’ll need for our DHTMLX Gantt chart data: gantt_tasks and gantt_links:
 
 ```
-CREATE TABLE `gantt_tasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) NOT NULL,
-  `start_date` datetime NOT NULL,
-  `duration` int(11) NOT NULL,
-  `progress` float NOT NULL,
-  `parent` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `gantt_tasks`
+(
+    `id`         int(11)      NOT NULL AUTO_INCREMENT,
+    `text`       varchar(255) NOT NULL,
+    `start_date` datetime     NOT NULL,
+    `duration`   int(11)      NOT NULL,
+    `progress`   float        NOT NULL,
+    `parent`     int(11)      NOT NULL,
+    `sortorder`  int(11)      NOT NULL,
+    PRIMARY KEY (`id`)
 );
 ```
 
 
 ```
-CREATE TABLE `gantt_links` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `source` int(11) NOT NULL,
-  `target` int(11) NOT NULL,
-  `type` varchar(1) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `gantt_links`
+(
+    `id`     int(11)    NOT NULL AUTO_INCREMENT,
+    `source` int(11)    NOT NULL,
+    `target` int(11)    NOT NULL,
+    `type`   varchar(1) NOT NULL,
+    PRIMARY KEY (`id`)
 );
-
 ```
 
 Now add some example tasks data to the gantt_tasks table:
 
 ```
-INSERT INTO `gantt_tasks` VALUES ('1', 'Project #1', '2022-11-01 00:00:00',
-  '5', '0.8', '0');
-INSERT INTO `gantt_tasks` VALUES ('2', 'Task #1', '2022-11-06 00:00:00',
-  '4', '0.5', '1');
-INSERT INTO `gantt_tasks` VALUES ('3', 'Task #2', '2022-11-05 00:00:00',
-  '6', '0.7', '1');
-INSERT INTO `gantt_tasks` VALUES ('4', 'Task #3', '2022-11-07 00:00:00',
-  '2', '0', '1');
-INSERT INTO `gantt_tasks` VALUES ('5', 'Task #1.1', '2022-01-05 00:00:00',
-  '5', '0.34', '2');
-INSERT INTO `gantt_tasks` VALUES ('6', 'Task #1.2', '2022-11-11 13:22:17',
-  '4', '0.5', '2');
-INSERT INTO `gantt_tasks` VALUES ('7', 'Task #2.1', '2022-11-07 00:00:00',
-  '5', '0.2', '3');
-INSERT INTO `gantt_tasks` VALUES ('8', 'Task #2.2', '2022-11-06 00:00:00',
-  '4', '0.9', '3');
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (1, 'Project #1', '2022-11-05 00:00:00', 10, 0.8, 0, 11);
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (2, 'Task #1', '2022-11-05 00:00:00', 6, 0.5, 1, 7);
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (3, 'Task #2', '2022-11-07 00:00:00', 8, 0.7, 1, 9);
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (4, 'Task #3', '2022-11-13 00:00:00', 2, 0, 1, 10);
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (5, 'Task #1.1', '2022-11-05 00:00:00', 3, 0.34, 2, 3);
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (6, 'Task #1.2', '2022-11-08 00:00:00', 3, 0.5, 2, 11);
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (7, 'Task #2.1', '2022-11-07 00:00:00', 3, 0.2, 3, 11);
+INSERT INTO `gantt_tasks` (id, text, start_date, duration, progress, parent, sortorder)
+VALUES (8, 'Task #2.2', '2022-11-10 00:00:00', 5, 0.9, 3, 11);
+```
+
+```
+INSERT INTO `gantt_links` (id, source, target, type)
+VALUES (6, 5, 6, '0');
+INSERT INTO `gantt_links` (id, source, target, type)
+VALUES (7, 7, 8, '0');
 ```
 
 You’ll be able to view the example tasks data by running the following query:
