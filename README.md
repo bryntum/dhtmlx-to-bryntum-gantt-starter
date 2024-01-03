@@ -111,3 +111,12 @@ You’ll be able to view the example tasks data by running the following query:
 ```
 SELECT * FROM gantt_tasks;
 ```
+<img width="1190" alt="CleanShot 2024-01-03 at 12 08 19@2x" src="https://github.com/bryntum/dhtmlx-to-bryntum-gantt-starter/assets/37709578/ff90d10f-a04f-4673-9695-04504a25c825">
+
+and the example link data by running the following query:
+
+```
+SELECT * FROM gantt_links;
+```
+<img width="452" alt="CleanShot 2024-01-03 at 12 10 23@2x" src="https://github.com/bryntum/dhtmlx-to-bryntum-gantt-starter/assets/37709578/2d0d3b0e-8c04-42c4-90b6-08d1a660e08c">
+
