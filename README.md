@@ -37,7 +37,13 @@ We’ll write our MySQL queries in the query tab and execute the queries by pres
 
 Creating a MySQL database for the DHTMLX data: Adding tables and adding example data
 
-Let’s run some MySQL queries in MySQL Workbench to create, use, and populate a database for our DHTMLX Gantt. Execute the following query to create a database called dhtmlx:
+Let’s run some MySQL queries in MySQL Workbench to create, use, and populate a database for our DHTMLX Gantt. If want to use MySQL CLI, connect to MySQL shell:
+
+```
+mysql -u root -p
+```
+
+Execute the following query to create a database called dhtmlx:
 
 
 ```
